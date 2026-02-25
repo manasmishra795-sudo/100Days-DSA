@@ -1,0 +1,52 @@
+//Count occurences of element in link list
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node *next;
+};
+void traverse(struct node *head)
+{
+    struct node*p=head;
+    while(p!=NULL)
+    {
+        printf("%d->",p->data);
+        p=p->next;
+    }
+    printf("NULL\n");
+}
+int counter(struct node *head,int element)
+{
+    int count=0;
+    struct node *p=head;
+    while(p!=NULL)
+    {
+        if(p->data==element)
+        {
+            count++;
+        }
+        p=p->next;
+    }
+    return count;
+}
+int main()
+{
+    struct node *head=NULL;
+    int n,element,i;
+    printf("Enter the number of nodes in list:\n");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)   
+    {
+        struct node *newnode=(struct node*)malloc(sizeof(struct node));
+        printf("Enter the data in %d:",i+1);
+        scanf("%d",&newnode->data);
+        newnode->next=head;
+        head=newnode;
+    }
+    traverse(head);
+    printf("Enter the element to be searched for :\n");
+    scanf("%d",&element);
+    int count=counter(head,element);
+    printf("The number of times %d is in the list is:%d\n",element,count);
+    return 0;
+}
